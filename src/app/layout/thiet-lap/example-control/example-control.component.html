@@ -1,0 +1,25 @@
+<p>example-control works!</p>
+<nz-divider nzOrientation="left" nzText="Thông tin chung"></nz-divider>
+
+<form nz-form [formGroup]="myForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+<!--      <input nz-input formControlName="email" id="email" />-->
+      <app-input-text formControlName="text"></app-input-text>
+    </nz-form-control>
+  </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+            <app-input-number formControlName="number"></app-input-number>
+        </nz-form-control>
+    </nz-form-item>
+  <ng-container>
+    <button nz-button nzType="primary" type="button" (click)="submitForm()">get value</button>
+    <button nz-button nzType="primary" type="button" (click)="onDisable()">disable all</button>
+    <button nz-button nzType="primary" type="button" (click)="onEnable()">enable all</button>
+  </ng-container>
+</form>
+{{ myFormValueText }}
