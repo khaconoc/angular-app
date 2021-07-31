@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -14,6 +13,8 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { AppRouting } from './app.routing';
+import { UserService } from './_share/services/user.service';
 
 
 registerLocaleData(en);
@@ -24,16 +25,27 @@ registerLocaleData(en);
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AppRouting,
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgZorroAntdModule
+    NgZorroAntdModule,
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [
+    // UserService,
+    {provide: NZ_I18N, useValue: en_US},
+    {provide: APP_INITIALIZER, useFactory: initializeApp, deps: [UserService], multi: true}
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
+
+export function initializeApp(userService: UserService): any {
+  return (): Promise<void> => {
+    return userService.init();
+  };
+}

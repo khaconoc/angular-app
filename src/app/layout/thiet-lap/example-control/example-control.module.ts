@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { ExampleControlDialogModule } from './example-control-dialog/example-control-dialog.module';
+import { RenderErrorsModule } from '../../../_base/controls/render-errors/render-errors.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
     ReactiveFormsModule,
     NzFormModule,
     NgZorroAntdModule,
+    ExampleControlDialogModule,
+    RenderErrorsModule,
   ]
 })
 export class ExampleControlModule { }

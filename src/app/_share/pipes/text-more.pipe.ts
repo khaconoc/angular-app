@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'text-more'
+  name: 'textMore'
 })
 export class TextMorePipe implements PipeTransform {
 

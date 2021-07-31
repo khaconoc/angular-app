@@ -6,8 +6,4 @@ const routes: Routes = [
   { path: '**', loadChildren: () => import('./_share/templates/page-not-found/page-not-found.module').then(m => m.PageNotFoundModule) },
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+export const AppRouting = RouterModule.forRoot(routes);
