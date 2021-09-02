@@ -1,24 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputTextComponent } from './input-text.component';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { FormsModule } from '@angular/forms';
-
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 @NgModule({
-    declarations: [
-        InputTextComponent
-    ],
-    exports: [
-        InputTextComponent
-    ],
-    imports: [
-        CommonModule,
-        NzInputModule,
-        NzIconModule,
-        FormsModule
-    ]
+  imports: [
+    CommonModule,
+    FormsModule,
+    NzIconModule,
+    NzInputModule
+  ],
+  exports: [
+    InputTextComponent
+  ],
+  declarations: [InputTextComponent]
 })
-export class InputTextModule {
-}
+export class InputTextModule { }

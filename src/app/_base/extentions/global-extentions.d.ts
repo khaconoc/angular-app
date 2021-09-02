@@ -13,18 +13,20 @@ declare global {
   //   toDateYYYYMMDD(this: Date): string;
   // }
   //
-  // interface Array<T> {
-  //   getMapingCombobox(this: Array<T>, keys: string, keyMap: string, apiService: any, apiActionName: string): Promise<Array<T>>
-  // }
+  interface Array<T> {
+    getMappingCombobox(this: Array<T>, keys: string, keyMap: string, apiService: any, apiActionName: string): Promise<Array<T>>
+  }
 }
 
 declare module '@angular/forms' {
   interface FormGroup {
     bindError(this: FormGroup, errors: ErrorsModel): string;
     textTrim(this: FormGroup): void;
+    disableIgnore(this: FormGroup, listControl: string[]): void;
+    enableIgnore(this: FormGroup, listControl: string[]): void;
     // resetMulti(this: FormGroup, listControl: string[]): void;
-    // disableMulti(this: FormGroup, listControl: string[]): void;
-    // enableMulti(this: FormGroup, listControl: string[]): void;
+    disableMulti(this: FormGroup, listControl: string[]): void;
+    enableMulti(this: FormGroup, listControl: string[]): void;
   }
   interface AbstractControl {
     markAllAsDirty(this: AbstractControl): void;

@@ -17,7 +17,8 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 declare var $;
 
 @Component({
-    selector: 'app-input-number',
+  // tslint:disable-next-line:component-selector
+    selector: 'input-number',
     templateUrl: './input-number.component.html',
     styleUrls: ['./input-number.component.scss'],
     encapsulation: ViewEncapsulation.None,

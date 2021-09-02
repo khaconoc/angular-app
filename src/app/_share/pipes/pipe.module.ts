@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { TextMorePipe } from './text-more.pipe';
+import { DateFormatPipe } from './date-format.pipe';
 @NgModule({
   declarations: [
-    TextMorePipe
+    TextMorePipe,
+    DateFormatPipe
   ],
   exports: [
-    TextMorePipe
+    TextMorePipe,
+    DateFormatPipe
   ]
 })
 export class PipeModule { }

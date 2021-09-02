@@ -1,20 +1,68 @@
-<li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
-  <ul>
-    <li nz-menu-item nzMatchRouter>
-      <a routerLink="/welcome">Welcome</a>
-    </li>
-    <li nz-menu-item nzMatchRouter>
-      <a routerLink="/monitor">Monitor</a>
-    </li>
-    <li nz-menu-item nzMatchRouter>
-      <a>Workplace</a>
-    </li>
+  <!--    ********************** BEGIN RENDER MENU ***********************************-->
+  <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+    <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: listFlatMenu }"></ng-container>
+    <ng-template #menuTpl let-menus>
+      <ng-container *ngFor="let menu of menus">
+        <li
+          *ngIf="menu.children.length === 0"
+          nz-menu-item
+          [nzPaddingLeft]="menu.level * 24"
+          nzMatchRouter
+        >
+          <i nz-icon [nzType]="'dashboard'"></i>
+          <a [routerLink]="menu.url">{{menu.name}}</a>
+<!--                        <span>{{ menu.name }}</span>-->
+        </li>
+        <li
+          *ngIf="menu.children.length !== 0"
+          nz-submenu
+          [nzTitle]="menu.name"
+          [nzPaddingLeft]="menu.level * 24"
+          [nzIcon]="'dashboard'"
+        >
+          <ul>
+            <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menu.children }"></ng-container>
+          </ul>
+        </li>
+      </ng-container>
+    </ng-template>
   </ul>
-</li>
-<li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
-  <ul>
-    <li nz-menu-item nzMatchRouter>
-      <a>Basic Form</a>
-    </li>
-  </ul>
-</li>
+  <!--    ********************** END RENDER MENU ***********************************-->
+  <!--      <li nz-submenu nzTitle="Dashboard" nzIcon="dashboard">-->
+  <!--        <ul>-->
+  <!--          <li nz-menu-item nzMatchRouter>-->
+  <!--            <a routerLink="/dashboard">Dashboard</a>-->
+  <!--          </li>-->
+  <!--          <li nz-menu-item nzMatchRouter>-->
+  <!--            <a>Monitor</a>-->
+  <!--          </li>-->
+  <!--          <li nz-menu-item nzMatchRouter>-->
+  <!--            <a>Workplace</a>-->
+  <!--          </li>-->
+  <!--        </ul>-->
+  <!--      </li>-->
+  <!--      <li nz-submenu nzTitle="Form" nzIcon="form">-->
+  <!--        <ul>-->
+  <!--          <li nz-menu-item nzMatchRouter>-->
+  <!--            <a routerLink="/thiet-lap/example-control">Example control</a>-->
+  <!--          </li>-->
+  <!--          <li nz-menu-item nzMatchRouter>-->
+  <!--            <a routerLink="/example/icon">Icon</a>-->
+  <!--          </li>-->
+  <!--          <li nz-submenu nzMatchRouter>-->
+  <!--            <a routerLink="/example/crud">form crud</a>-->
+  <!--            <ul>-->
+  <!--              <li nz-menu-item nzMatchRouter>-->
+  <!--                <a routerLink="/thiet-lap/example-control">Example control</a>-->
+  <!--              </li>-->
+  <!--              <li nz-menu-item nzMatchRouter>-->
+  <!--                <a routerLink="/example/icon">Icon</a>-->
+  <!--              </li>-->
+  <!--              <li nz-menu-item nzMatchRouter>-->
+  <!--                <a routerLink="/example/crud">form crud</a>-->
+
+  <!--              </li>-->
+  <!--            </ul>-->
+  <!--          </li>-->
+  <!--        </ul>-->
+  <!--      </li>-->

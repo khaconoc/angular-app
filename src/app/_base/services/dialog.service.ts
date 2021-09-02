@@ -12,18 +12,12 @@ export class DialogService {
     private modalService: NzModalService
   ) {
   }
-  async confirm(): Promise<boolean> {
-    // this.modalService.confirm({
-    //   nzTitle: 'Confirm',
-    //   nzContent: 'Bla bla ...',
-    //   nzOkText: 'OK',
-    //   nzCancelText: 'Cancel'
-    // });
-    // return true;
+
+  public confirm(content: string, title: string = 'Thông báo'): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       this.modalService.confirm({
-        nzTitle: 'title',
-        nzContent: 'content',
+        nzTitle: title,
+        nzContent: content,
         nzOnOk: () => resolve(true),
         nzOnCancel: () => resolve(false)
       });

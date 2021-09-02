@@ -1,0 +1,173 @@
+<button aria-label="Close" class="ant-modal-close ng-star-inserted" (click)="closeDialog()">
+  <span class="ant-modal-close-x">
+    <i nz-icon nzType="close" nzTheme="outline" class="anticon ant-modal-close-icon anticon-close"></i>
+  </span>
+</button>
+
+<nz-spin [nzSpinning]="isLoading">
+  <form nz-form [formGroup]="myForm" novalidate>
+    <ng-template #controlErrorTpl let-control>
+      <app-render-errors [control]="control"></app-render-errors>
+    </ng-template>
+    <div class="row">
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label>colText</nz-form-label>
+          <nz-form-control [nzErrorTip]="controlErrorTpl">
+            <input-text placeholder="Nhập colNumber" formControlName="colText"></input-text>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>colNumber</nz-form-label>
+          <nz-form-control [nzErrorTip]="controlErrorTpl">
+            <input-number placeholder="Nhập colNumber" formControlName="colNumber"></input-number>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>colDate</nz-form-label>
+          <nz-form-control [nzErrorTip]="controlErrorTpl">
+            <input-date placeholder="Nhập colDate" formControlName="colDate"></input-date>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>colBool</nz-form-label>
+          <nz-form-control [nzErrorTip]="controlErrorTpl">
+            <input-check-box
+
+              formControlName="colBool"
+              [nzValue]="true"
+            >
+            </input-check-box>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>colFloat</nz-form-label>
+          <nz-form-control [nzErrorTip]="controlErrorTpl">
+            <input-float placeholder="Nhập colFloat" formControlName="colFloat"></input-float>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>colSelect</nz-form-label>
+          <nz-form-control [nzErrorTip]="controlErrorTpl">
+            <input-select
+              placeholder="Nhập colSelect"
+              formControlName="colSelect"
+              [items]="[{value: '1', text: 'item 1'},{value: '2', text: 'item 2'},{value: '3', text: 'item 3'}]"
+            >
+            </input-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>colSelectMultiple</nz-form-label>
+          <nz-form-control [nzErrorTip]="controlErrorTpl">
+            <input-select-multiple
+              placeholder="Nhập colSelect"
+              formControlName="colSelectMultiple"
+              [items]="[{value: '1', text: 'item 1'},{value: '2', text: 'item 2'},{value: '3', text: 'item 3'}]"
+            >
+            </input-select-multiple>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>colSelectApi</nz-form-label>
+          <nz-form-control [nzErrorTip]="controlErrorTpl">
+            <input-select-api
+              placeholder="Nhập colSelectApi"
+              formControlName="colSelectApi"
+              [apiService]="exampleCategoryService"
+              [items]="[{value:-1, text: 'value = -1'}]"
+            ></input-select-api>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>colSelectApiMultiple</nz-form-label>
+          <nz-form-control [nzErrorTip]="controlErrorTpl">
+            <input-select-multiple-api
+              placeholder="Nhập colSelectApiMultiple"
+              formControlName="colSelectApiMultiple"
+              [items]="[{value: -1, text: 'item 1'}]"
+              [apiService]="exampleCategoryService"
+            >
+            </input-select-multiple-api>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>colRadio</nz-form-label>
+          <nz-form-control [nzErrorTip]="controlErrorTpl">
+            <input-radio placeholder="Nhập colRadio"
+                         formControlName="colRadio"
+                         [items]="[{value:'1', text:'name 1'},{value:'2', text:'name 2'}]"
+            >
+
+            </input-radio>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>colEnd</nz-form-label>
+          <nz-form-control [nzErrorTip]="controlErrorTpl">
+            <input-text placeholder="Nhập colEnd" formControlName="colEnd"></input-text>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <nz-form-item>
+          <nz-form-label nzRequired>colTextArea</nz-form-label>
+          <nz-form-control [nzErrorTip]="controlErrorTpl">
+            <input-textarea placeholder="Nhập colLongText" formControlName="colTextArea"></input-textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div class="text-center mt-2">
+      <ng-container *ngIf="mode === 'view'">
+        <button nz-button class="btn btn-primary mr-2 w-2" (click)="changeModeToEdit()">
+          Chỉnh sửa
+        </button>
+      </ng-container>
+      <ng-container *ngIf="mode !== 'view'">
+        <button nz-button [nzLoading]="isSubmit" class="btn btn-primary mr-2 w-2" (click)="save()">
+          Ghi
+        </button>
+      </ng-container>
+<!--      <ng-container *ngIf="!(mode === 'view' || mode === 'edit')">-->
+<!--        <button nz-button [nzLoading]="isSubmit" class="btn btn-primary mr-2" (click)="save(true)">-->
+<!--          Ghi và thêm mới-->
+<!--        </button>-->
+<!--      </ng-container>-->
+      <button class="btn btn-light" type="button" (click)="closeDialog()">Đóng</button>
+    </div>
+  </form>
+</nz-spin>

@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu.component';
-import {NgZorroAntdModule} from "../../../_base/modules/ng-zorro-antd.module";
+import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
-    NgZorroAntdModule
+    NgZorroAntdModule,
+    RouterModule
   ],
   exports: [
     MenuComponent

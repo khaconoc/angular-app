@@ -34,7 +34,7 @@ export class UserService {
       this.currentUser = environment.production ? userPro : userDev;
       setTimeout(() => {
         resolve();
-      }, 100);
+      }, 10);
     });
   }
 }

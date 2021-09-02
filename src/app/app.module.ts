@@ -1,20 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NZ_I18N } from 'ng-zorro-antd/i18n';
-import { en_US } from 'ng-zorro-antd/i18n';
+import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzMessageModule, NzModalModule, NzNotificationModule } from 'ng-zorro-antd';
 import { AppRouting } from './app.routing';
 import { UserService } from './_share/services/user.service';
+import { MenuModule } from './_share/templates/menu/menu.module';
 
 
 registerLocaleData(en);
@@ -25,14 +25,18 @@ registerLocaleData(en);
   ],
   imports: [
     BrowserModule,
-    AppRouting,
+    FormsModule,
+    MenuModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    NgZorroAntdModule,
+    NzModalModule,
+    NzMessageModule,
+    NzNotificationModule,
+    AppRouting,
   ],
   providers: [
     // UserService,

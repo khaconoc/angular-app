@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/WebApp",
+            "outputPath": "D:/DATA/Ha_Noi_Code/genCode/static",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -34,7 +34,9 @@
             ],
             "styles": [
               "src/theme.less",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/icons/icomoon/styles.min.css"
             ],
             "scripts": []
           },
@@ -131,5 +133,5 @@
       }
     }
   },
-  "defaultProject": "WebApp"
+  "defaultProject": "web-app"
 }

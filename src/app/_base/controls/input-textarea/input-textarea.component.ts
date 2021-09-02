@@ -2,7 +2,7 @@
 import { Component, OnInit, AfterViewInit, OnChanges, Input, Output, EventEmitter, ElementRef, SimpleChanges, ViewEncapsulation, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-declare let $;
+// declare let $;
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'input-textarea',
@@ -46,7 +46,7 @@ export class InputTextareaComponent implements OnInit, AfterViewInit, ControlVal
   }
 
   ngAfterViewInit(): void {
-    $(this.el.nativeElement).removeClass(this.class);
+    // $(this.el.nativeElement).removeClass(this.class);
   }
 
   writeValue(obj: any): void {

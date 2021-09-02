@@ -1,8 +1,9 @@
-import { PagedListModel, ResponseModel } from './../../_base/models/response-model';
+import { PagedListModel, ResponseModel } from '../../_base/models/response-model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LocationStrategy } from '@angular/common';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class BaseService {
     return this._baseUrl;
   }
   public set baseUrl(value: string) {
-    let rootPath: string = this.locationStrategy.getBaseHref();
+    // let rootPath: string = this.locationStrategy.getBaseHref();
+    let rootPath: string = environment.apiUrl;
     if (rootPath === '/') { rootPath = ''; }
     this._baseUrl = `${rootPath}${value}`;
   }
@@ -32,7 +34,7 @@ export class BaseService {
       .then(value => data.result = value)
       .catch((err: any) => {
         if (err instanceof HttpErrorResponse) {
-          data.error = err.error;
+          data.error = err.error.errors;
         } else {
           data.error = { '': ['notFound'] };
           console.log('notFound', err);
@@ -64,7 +66,7 @@ export class BaseService {
   }
 
   public getPaging<T>(params: any = null): Promise<ResponseModel<T>> {
-    const api = this.http.get<T>(`${this.baseUrl}/get-paging`, { params: this.stringifyParams(params) });
+    const api = this.http.get<T>(`${this.baseUrl}/GetPaging`, { params: this.stringifyParams(params) });
     return this.bindResponseApi(api);
   }
 
@@ -73,8 +75,23 @@ export class BaseService {
     return this.bindResponseApi(api);
   }
 
-  public post<T>(body: any): Promise<ResponseModel<T>> {
-    const api = this.http.post<T>(`${this.baseUrl}/add`, body);
+  public get<T>(params: any = null, endPoint= 'get'): Promise<ResponseModel<T>> {
+    const api = this.http.get<T>(`${this.baseUrl}/${endPoint}`, { params: this.stringifyParams(params) });
+    return this.bindResponseApi(api);
+  }
+
+  public post<T>(body: any, endpoint = 'add'): Promise<ResponseModel<T>> {
+    const api = this.http.post<T>(`${this.baseUrl}/${endpoint}`, body);
+    return this.bindResponseApi(api);
+  }
+
+  public create<T>(body: any, endpoint = 'Create'): Promise<ResponseModel<T>> {
+    const api = this.http.post<T>(`${this.baseUrl}/${endpoint}`, body);
+    return this.bindResponseApi(api);
+  }
+
+  public update<T>(body: any, endpoint = 'Update'): Promise<ResponseModel<T>> {
+    const api = this.http.put<T>(`${this.baseUrl}/${endpoint}`, body);
     return this.bindResponseApi(api);
   }
 
@@ -83,13 +100,13 @@ export class BaseService {
     return this.bindResponseApi(api);
   }
 
-  public findOne<T>(params: any): Promise<ResponseModel<T>> {
-    const api = this.http.get<T>(`${this.baseUrl}/find-one`, { params: this.stringifyParams(params) });
+  public findOne<T>(params: any, endPoint = 'FindOne'): Promise<ResponseModel<T>> {
+    const api = this.http.get<T>(`${this.baseUrl}/${endPoint}`, { params: this.stringifyParams(params) });
     return this.bindResponseApi(api);
   }
 
-  public delete<T>(params: any): Promise<ResponseModel<T>> {
-    const api = this.http.delete<T>(`${this.baseUrl}/delete`, { params: this.stringifyParams(params) });
+  public delete<T>(params: any, endPoint = 'Delete'): Promise<ResponseModel<T>> {
+    const api = this.http.delete<T>(`${this.baseUrl}/${endPoint}`, { params: params });
     return this.bindResponseApi(api);
   }
 
@@ -98,8 +115,13 @@ export class BaseService {
     return this.bindResponseApi(api);
   }
 
-  public getCombobox<T>(params: any): Promise<ResponseModel<T>> {
-    const api = this.http.get<T>(`${this.baseUrl}/combobox`, { params: this.stringifyParams(params) });
+  // public getCombobox<T>(params: any, endPoint = 'ComboBox'): Promise<ResponseModel<T>> {
+  //   const api = this.http.post<T>(`${this.baseUrl}/${endPoint}`, { params: this.stringifyParams(params) });
+  //   return this.bindResponseApi(api);
+  // }
+
+  public getCombobox<T>(body: any, endPoint = 'ComboBox'): Promise<ResponseModel<T>> {
+    const api = this.http.post<T>(`${this.baseUrl}/${endPoint}`, body);
     return this.bindResponseApi(api);
   }
 

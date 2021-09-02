@@ -1,0 +1,67 @@
+
+
+<div class="content pt-0">
+  <div class="header-elements-inline">
+    <div class="navbar-expand-md w-100">
+      <div class="padding-left-15 text-right d-md-none w-100 row">
+        <button class="navbar-toggler" data-target="#search-list" data-toggle="collapse" type="button">
+          <i nz-icon nzType="menu" nzTheme="outline"></i>
+        </button>
+      </div>
+      <div class="navbar-collapse collapse" id="search-list">
+        <form *ngIf="myForm" [formGroup]="myForm" class="w-100" (ngSubmit)="onSubmit()" novalidate>
+          <ng-template #controlErrorTpl let-control>
+            <app-render-errors [control]="control"></app-render-errors>
+          </ng-template>
+          <div class="row">
+            <div class="col-md-8">
+              <nz-form-item>
+                <nz-form-label>Path</nz-form-label>
+                <nz-form-control [nzErrorTip]="controlErrorTpl">
+                  <input-text placeholder="Duong dan can gen"
+                              formControlName="path">/
+                  </input-text>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+<!--            <div class="col-md-3">-->
+<!--              <nz-form-item>-->
+<!--                <nz-form-label>Domain</nz-form-label>-->
+<!--                <nz-form-control [nzErrorTip]="controlErrorTpl">-->
+<!--                  <input-text placeholder="Ten logic"-->
+<!--                              formControlName="domain">-->
+<!--                  </input-text>-->
+<!--                </nz-form-control>-->
+<!--              </nz-form-item>-->
+<!--            </div>-->
+            <div class="col-md-4">
+              <nz-form-item>
+                <nz-form-label>Action</nz-form-label>
+                <nz-form-control [nzErrorTip]="controlErrorTpl">
+                  <input-text placeholder="Ten logic"
+                              formControlName="action">
+                  </input-text>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <ng-container>
+            <button [hidden]="true" type="submit"></button>
+          </ng-container>
+          <br/>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{info}}
+
+<div class="page-header page-header-light border-bottom-0">
+  <div class="page-header-content header-elements-md-inline">
+    <div class="header-elements">
+      <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+        <i class="icon-search4 mr-2"></i>Gen</button>
+    </div>
+  </div>
+</div>
