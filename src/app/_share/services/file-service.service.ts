@@ -17,8 +17,12 @@ export class FileService extends BaseService {
     this.baseUrl = '/api/File';
   }
 
-  public upload<T>(body: any, endpoint = 'upload'): Promise<ResponseModel<T>> {
-    const api = this.http.post<T>(`${this.baseUrl}/${endpoint}`, body);
+  public upload<T>(files: any[], endpoint = 'upload'): Promise<ResponseModel<T>> {
+    const formData = new FormData();
+    for (const file of files) {
+      formData.append('files', file);
+    }
+    const api = this.http.post<T>(`https://localhost:4001/api/File/upload`, formData);
     return this.bindResponseApi(api);
   }
 

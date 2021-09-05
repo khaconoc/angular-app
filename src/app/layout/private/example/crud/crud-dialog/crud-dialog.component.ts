@@ -76,6 +76,7 @@ export class CrudDialogComponent implements OnInit {
   }
 
   async save(): Promise<void> {
+    console.log(this.myForm.getRawValue());
     this.myForm.markAllAsDirty();
     if (this.myForm.invalid) {
       return ;

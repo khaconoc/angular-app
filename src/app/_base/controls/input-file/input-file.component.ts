@@ -50,8 +50,16 @@ export class InputFileComponent implements OnInit, ControlValueAccessor {
   ngOnInit(): void {
   }
 
-  beforeUpload = async (file: NzUploadFile): Promise<boolean> => {
-    const rs = await this.fileApi.upload<any[]>([{fileName: file.name, data: file}], this.folder);
+
+  beforeUpload = (file: NzUploadFile): boolean => {
+    // console.log('file', this.controlValue);
+    // // const rs = await this.fileApi.upload<any[]>([{fileName: file.name, data: file}]);
+    this.processUpload(file);
+    return false;
+  }
+
+  async processUpload(file: NzUploadFile): Promise<void> {
+    const rs = await this.fileApi.upload<any[]>([file]);
 
     if (rs.ok) {
       for (const item of rs.result) {
@@ -67,39 +75,38 @@ export class InputFileComponent implements OnInit, ControlValueAccessor {
       this.eventBaseChange(this.getControlValue());
       this.eventOnChange.emit(this.getControlValue());
     }
-    return false;
   }
 
   changeFile(): void {
-    this.eventBaseChange(this.getControlValue());
-    this.eventOnChange.emit(this.getControlValue());
+    // this.eventBaseChange(this.getControlValue());
+    // this.eventOnChange.emit(this.getControlValue());
   }
 
   async writeValue(obj: any): Promise<void> {
-    if (obj) {
-      if (typeof (obj) === 'string') {
-        this.controlValue = JSON.parse(obj).map(item => {
-          return {
-            uid: item.fileNumber,
-            name: item.fileName,
-            status: 'done',
-            size: item.fileSize,
-            url: this.setPathUrl(item.fileUrl)
-          };
-        });
-      } else if (obj instanceof Array) {
-        this.controlValue = obj.map(item => {
-          return {
-            uid: item.fileNumber,
-            name: item.fileName,
-            status: 'done',
-            size: item.fileSize,
-            url: this.setPathUrl(item.fileUrl)
-          };
-        });
-        this.eventBaseChange(this.getControlValue());
-      }
-    }
+    // if (obj) {
+    //   if (typeof (obj) === 'string') {
+    //     this.controlValue = JSON.parse(obj).map(item => {
+    //       return {
+    //         uid: item.fileNumber,
+    //         name: item.fileName,
+    //         status: 'done',
+    //         size: item.fileSize,
+    //         url: this.setPathUrl(item.fileUrl)
+    //       };
+    //     });
+    //   } else if (obj instanceof Array) {
+    //     this.controlValue = obj.map(item => {
+    //       return {
+    //         uid: item.fileNumber,
+    //         name: item.fileName,
+    //         status: 'done',
+    //         size: item.fileSize,
+    //         url: this.setPathUrl(item.fileUrl)
+    //       };
+    //     });
+    //     this.eventBaseChange(this.getControlValue());
+    //   }
+    // }
   }
 
   registerOnChange(fn: any): void {
@@ -134,5 +141,9 @@ export class InputFileComponent implements OnInit, ControlValueAccessor {
 
   getPathUrl(url: string): string {
     return url.replace(environment.path, '');
+  }
+
+  onDownload = (file: NzUploadFile) => {
+    window.open(`${environment.apiFileUrl}/${file.url}`, '_blank');
   }
 }

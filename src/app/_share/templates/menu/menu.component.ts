@@ -34,6 +34,7 @@ export class MenuComponent implements OnInit {
     { id: 10, name: 'Example', url: '', parentId: null, },
     { id: 11, name: 'Crud', url: '/private/example/crud', parentId: 10, },
     { id: 12, name: 'Icon', url: '/private/example/icon', parentId: 10, },
+    { id: 13, name: 'Docs Backend', url: '/private/example/docs-backend', parentId: 10, },
   ];
 
   ngOnInit(): void {

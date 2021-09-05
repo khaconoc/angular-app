@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuComponent } from './_share/templates/menu/menu.component';
+import { Router } from '@angular/router';
+import { UserService } from './_share/services/user.service';
 
 interface IMenu {
   id: number;
@@ -18,6 +20,12 @@ export class AppComponent implements OnInit{
   isCollapsed = false;
 
   @ViewChild('appMenu') appMenu: MenuComponent;
+
+  constructor(
+    private router: Router,
+    public userService: UserService
+  ) {
+  }
 
   listFlatMenu: IMenu[] = [
     { id: 1, name: 'Dashboard', url: '/dashboard', parentId: null, },
@@ -41,5 +49,11 @@ export class AppComponent implements OnInit{
 
   toggleCollapsed(): void {
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  onLogout(): void {
+    localStorage.removeItem('token');
+    this.userService.currentUser = null;
+    this.router.navigate(['/public/login'], { queryParams: { redirect: this.router.url }, replaceUrl: true });
   }
 }

@@ -1,0 +1,69 @@
+<div class="page-header page-header-light">
+  <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+    <div class="d-flex">
+      <div class="breadcrumb">
+        <a [routerLink]="['/']" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Trang chủ</a>
+        <a [routerLink]="['/public']" class="breadcrumb-item">public</a>
+        <!--                <a href="javascript:;" class="breadcrumb-item">Quản lý</a>-->
+        <span class="breadcrumb-item active">Đăng nhập</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content pt-0">
+  <div class="header-elements-inline">
+    <div class="navbar-expand-md w-100">
+      <div class="padding-left-15 text-right d-md-none w-100 row">
+        <button class="navbar-toggler" data-target="#search-list" data-toggle="collapse" type="button">
+          <i nz-icon nzType="menu" nzTheme="outline"></i>
+        </button>
+      </div>
+      <div class="page-title d-flex">
+        <h4><span class="font-weight-semibold">Đăng nhập</span></h4>
+      </div>
+      <div class="navbar-collapse collapse" id="search-list">
+        <form *ngIf="myForm" [formGroup]="myForm" class="w-100" (ngSubmit)="login()" novalidate>
+          <ng-template #controlErrorTpl let-control>
+            <app-render-errors [control]="control"></app-render-errors>
+          </ng-template>
+          <div class="row">
+            <div class="col-md-6">
+              <nz-form-item>
+                <nz-form-label>user name</nz-form-label>
+                <nz-form-control [nzErrorTip]="controlErrorTpl">
+                  <input-text
+                    placeholder="Nhập user"
+                    formControlName="userName">
+                  </input-text>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <nz-form-item>
+                <nz-form-label>password</nz-form-label>
+                <nz-form-control [nzErrorTip]="controlErrorTpl">
+                  <input-text placeholder="Nhập pass"
+                              formControlName="passWord">
+                  </input-text>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <ng-container>
+            <button [hidden]="true" type="submit"></button>
+          </ng-container>
+          <br/>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-elements">
+    <button type="submit" nz-button nzType="primary" (click)="login()">
+      <i class="icon-search4 mr-2"></i>Đăng nhập
+    </button>
+
+</div>

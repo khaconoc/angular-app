@@ -31,7 +31,7 @@ export class UserService {
         age: 17,
         token: null
       };
-      this.currentUser = environment.production ? userPro : userDev;
+      // this.currentUser = environment.production ? userPro : userDev;
       setTimeout(() => {
         resolve();
       }, 10);

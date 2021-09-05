@@ -38,13 +38,11 @@
       </div>
       <div class="col-md-6">
         <nz-form-item>
-          <nz-form-label nzRequired>colBool</nz-form-label>
           <nz-form-control [nzErrorTip]="controlErrorTpl">
             <input-check-box
-
               formControlName="colBool"
               [nzValue]="true"
-            >
+            >col Checkbox
             </input-check-box>
           </nz-form-control>
         </nz-form-item>
@@ -137,6 +135,21 @@
           <nz-form-label nzRequired>colEnd</nz-form-label>
           <nz-form-control [nzErrorTip]="controlErrorTpl">
             <input-text placeholder="Nhập colEnd" formControlName="colEnd"></input-text>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>colFile</nz-form-label>
+          <nz-form-control [nzErrorTip]="controlErrorTpl">
+            <input-file placeholder="Nhập colFile"
+                        formControlName="colFile"
+                        size="1"
+            >
+
+            </input-file>
           </nz-form-control>
         </nz-form-item>
       </div>
