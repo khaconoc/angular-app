@@ -275,8 +275,9 @@ export const LayoutRouting = RouterModule.forChild(routes);
 ***Mapping***
 
 * MapTo
+
 > Dùng khi muốn mapping 1 class vào entity
-> 
+>
 > extend `IMapTo<Dao.Entities.Example>` (dành cho class request)
 
 ```java
@@ -288,8 +289,9 @@ public void Mapping(Profile profile)
 ```
 
 * MapFrom
+
 > Dùng khi muốn mapping từ entity ra class
-> 
+>
 > extend `IMapFrom<Dao.Entities.Example>` (dành cho response)
 
 ```java

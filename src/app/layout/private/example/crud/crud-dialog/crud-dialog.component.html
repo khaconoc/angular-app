@@ -57,6 +57,18 @@
           </nz-form-control>
         </nz-form-item>
       </div>
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>colIdCategory</nz-form-label>
+          <nz-form-control [nzErrorTip]="controlErrorTpl">
+            <input-select-api
+              placeholder="Nhập colIdCategory"
+              formControlName="colIdCategory"
+              [apiService]="exampleCategoryService"
+            ></input-select-api>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
     </div>
 
     <div class="row">

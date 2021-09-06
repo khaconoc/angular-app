@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -6,11 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  isCollapsed = false;
 
-  constructor() { }
+  @Input() isCollapsed: boolean;
+  @Output() toggleCollapsedEvent = new EventEmitter<any>();
+  @Output() logoutEvent = new EventEmitter<any>();
+
+  constructor(
+    public userService: UserService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  toggleCollapsed(): void {
+    this.toggleCollapsedEvent.emit();
+  }
+
+  onLogout(): void {
+    this.logoutEvent.emit();
+  }
 }

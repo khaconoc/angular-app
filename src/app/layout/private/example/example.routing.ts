@@ -7,6 +7,7 @@ const routes: Routes = [
       { path: 'icon', loadChildren: () => import('./icon/icon.module').then(x => x.IconModule)},
       { path: 'crud', loadChildren: () => import('./crud/crud.module').then(x => x.CrudModule)},
       { path: 'docs-backend', loadChildren: () => import('./docs-backend/docs-backend.module').then(x => x.DocsBackendModule)},
+      { path: 'form-array', loadChildren: () => import('./form-array/form-array.module').then(x => x.FormArrayModule)},
     ]
   },
 ];

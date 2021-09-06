@@ -1,11 +1,24 @@
-<div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-            <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
-          <!--            <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>-->
+<!--<nz-header>-->
+<!--  <div class="app-header">-->
+        <span class="header-trigger" (click)="toggleCollapsed()">
+            <i class="trigger"
+               nz-icon
+               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ></i>
         </span>
-  <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-<!--            <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>-->
-            <i class="trigger" nz-icon></i>
-        </span>
-</div>
-<div class="logo"></div>
+    <ng-container *ngIf="!!userService?.currentUser">
+      <a nz-dropdown [nzDropdownMenu]="menu" nzPlacement="bottomRight" class="btn-logout">
+        <i class="icon-user icon-1x"></i>
+        {{userService?.currentUser?.userName}}
+        <i nz-icon nzType="down"></i>
+      </a>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+          <li nz-menu-item>Thông tin cá nhân</li>
+          <li nz-menu-item (click)="onLogout()">Đăng xuất</li>
+        </ul>
+      </nz-dropdown-menu>
+    </ng-container>
+<!--  </div>-->
+
+<!--</nz-header>-->

@@ -16,6 +16,7 @@ import { AppRouting } from './app.routing';
 import { UserService } from './_share/services/user.service';
 import { MenuModule } from './_share/templates/menu/menu.module';
 import { AuthGuard } from './_share/services/auth.guard';
+import { HeaderModule } from './_share/templates/header/header.module';
 
 
 registerLocaleData(en);
@@ -28,6 +29,7 @@ registerLocaleData(en);
     BrowserModule,
     FormsModule,
     MenuModule,
+    HeaderModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,

@@ -1,0 +1,99 @@
+<form nz-form [formGroup]="myForm" novalidate>
+  <ng-template #controlErrorTpl let-control>
+    <app-render-errors [control]="control"></app-render-errors>
+  </ng-template>
+  <div class="row">
+    <div class="col-md-6">
+      <nz-form-item>
+        <nz-form-label>colText</nz-form-label>
+        <nz-form-control [nzErrorTip]="controlErrorTpl">
+          <input-text placeholder="Nhập colNumber" formControlName="colText"></input-text>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="col-md-6">
+      <nz-form-item>
+        <nz-form-label>colNumber</nz-form-label>
+        <nz-form-control [nzErrorTip]="controlErrorTpl">
+          <input-text placeholder="Nhập colNumber" formControlName="colNumber"></input-text>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <nz-table formArrayName="colArray" [nzData]="[1]" [nzBordered]="true" [nzFrontPagination]="false" nzSize="small"
+            [nzScroll]="{ x: false }">
+    <thead>
+    <tr>
+      <th class="text-center">STT</th>
+      <th class="text-center" style="min-width: 120px">colId</th>
+      <th class="text-center" style="min-width: 120px">colName</th>
+      <th class="text-center" style="min-width: 120px">colSelect</th>
+      <th class="text-center" style="width: 30px"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let item of colArrayInForm.controls;let i = index">
+      <tr [formGroupName]="i">
+        <td class="text-center">
+          {{ i + 1}}
+        </td>
+        <!--          Tên param-->
+        <td class="text-center">
+          <a class="data-link" href="javascript:;">
+            <nz-form-item>
+              <nz-form-control [nzErrorTip]="controlErrorTpl">
+                <input-text formControlName="colId"></input-text>
+              </nz-form-control>
+            </nz-form-item>
+          </a>
+        </td>
+        <td class="text-center">
+          <a class="data-link" href="javascript:;">
+            <nz-form-item>
+              <nz-form-control [nzErrorTip]="controlErrorTpl">
+                <input-number formControlName="colName"></input-number>
+              </nz-form-control>
+            </nz-form-item>
+          </a>
+        </td>
+        <td class="text-center">
+          <a class="data-link" href="javascript:;">
+            <nz-form-item>
+              <nz-form-control [nzErrorTip]="controlErrorTpl">
+                <input-select formControlName="colSelect"
+                              [items]="[{value:1,text:'String'},{value:2, text:'Number'},{value:3, text:'Date'}]">
+                </input-select>
+              </nz-form-control>
+            </nz-form-item>
+          </a>
+        </td>
+
+        <td class="text-center">
+          <div class="list-icons list-icons-extended text-center">
+            <a class="list-icons-item text-danger" href="javascript:;" (click)="removeRowInColArray(i)">
+                  <span nz-tooltip nzTooltipTitle="Xóa">
+                    <i nz-icon nzType="delete" nzTheme="outline"></i>
+                  </span>
+            </a>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+    <tr>
+      <td colspan="20" class="text-center">
+        <div class="list-icons list-icons-extended text-center">
+          <a class="list-icons-item text-success" href="javascript:;" (click)="addRowInColArray()">
+                <span nz-tooltip nzTooltipTitle="Xóa">
+                  <i nz-icon nzType="plus" nzTheme="outline"></i> Thêm row
+                </span>
+          </a>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+  <button nz-button nzType="primary" type="button" (click)="onSubmit()">Submit</button>
+  <button nz-button nzType="primary" type="button" (click)="onPatchValue()">Patch Value</button>
+  {{ stringLog | json }}
+</form>

@@ -101,7 +101,6 @@ export class CrudDialogComponent implements OnInit {
       const body = {
         id: this.id,
         ...formValue,
-        colSelectApiMultiple: null
       };
 
       this.isSubmit = true;
