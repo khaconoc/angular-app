@@ -48,6 +48,7 @@ export class CrudDialogComponent implements OnInit {
       colSelectApiMultiple: [null],
       colTextArea: [null],
       colRadio: [null],
+      autocomplate: [null],
     });
 
     if (this.mode === DialogMode.view) {

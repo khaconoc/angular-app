@@ -35,6 +35,8 @@ export class MenuComponent implements OnInit {
     { id: 11, name: 'Crud', url: '/private/example/crud', parentId: 10, },
     { id: 11, name: 'Form Array', url: '/private/example/form-array', parentId: 10, },
     { id: 12, name: 'Icon', url: '/private/example/icon', parentId: 10, },
+    { id: 12, name: 'Support Element', url: '/private/example/support-element', parentId: 10, },
+    { id: 12, name: 'Matrix', url: '/private/example/matrix', parentId: 10, },
     { id: 13, name: 'Docs Backend', url: '/private/example/docs-backend', parentId: 10, },
   ];
 

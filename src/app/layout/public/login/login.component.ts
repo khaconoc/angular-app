@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     localStorage.setItem('token', 'xnxx');
+    localStorage.setItem('userName', formData.userName);
     this.userService.currentUser = {
       userName: formData.userName,
       userId: 'dev-007',

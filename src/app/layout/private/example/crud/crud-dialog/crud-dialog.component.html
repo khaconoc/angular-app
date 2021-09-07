@@ -165,6 +165,46 @@
           </nz-form-control>
         </nz-form-item>
       </div>
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>autocomplate</nz-form-label>
+          <nz-form-control [nzErrorTip]="controlErrorTpl">
+            <input-autocomplate-api
+              placeholder="Nhập autocomplate"
+              formControlName="autocomplate"
+              [apiService]="exampleCategoryService"
+            ></input-autocomplate-api>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>colTextArea</nz-form-label>
+          <nz-form-control [nzErrorTip]="controlErrorTpl">
+            <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate" [nzAddOnAfter]="addOnAfterTemplate">
+              <input type="text" nz-input/>
+            </nz-input-group>
+            <ng-template #addOnBeforeTemplate>
+              <input-select
+                placeholder="Nhập colSelect"
+                formControlName="colSelect"
+                [items]="[{value: '1', text: 'item 1'},{value: '2', text: 'item 2'},{value: '3', text: 'item 3'}]"
+              >
+              </input-select>
+            </ng-template>
+            <ng-template #addOnAfterTemplate>
+              <input-select
+                placeholder="Nhập colSelect"
+                formControlName="colSelect"
+                [items]="[{value: '1', text: 'item 1'},{value: '2', text: 'item 2'},{value: '3', text: 'item 3'}]"
+              >
+              </input-select>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-12">
@@ -176,6 +216,7 @@
         </nz-form-item>
       </div>
     </div>
+
     <div class="text-center mt-2">
       <ng-container *ngIf="mode === 'view'">
         <button nz-button class="btn btn-primary mr-2 w-2" (click)="changeModeToEdit()">

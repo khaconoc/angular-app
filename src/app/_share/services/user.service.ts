@@ -32,6 +32,12 @@ export class UserService {
         token: null
       };
       // this.currentUser = environment.production ? userPro : userDev;
+      if (localStorage.token) {
+        this.currentUser = {
+          ...userDev,
+          userName: localStorage.userName
+        };
+      }
       setTimeout(() => {
         resolve();
       }, 10);

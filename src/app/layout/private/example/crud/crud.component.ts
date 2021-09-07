@@ -49,7 +49,8 @@ export class CrudComponent implements OnInit {
     private exampleCategoryService: ExampleCategoryService,
     private dialogService: DialogService,
     private messageService: MessageService,
-  ) { }
+  ) {
+  }
 
   async ngOnInit(): Promise<void> {
     this.formSearch = this.fb.group({
@@ -68,10 +69,10 @@ export class CrudComponent implements OnInit {
     const rs = await this.exampleCrudService.get<any>(params, 'GetPaging');
 
     const tempData = [
-      { colIdCategory: 1, ids: [1, 2] },
-      { colIdCategory: 3, ids: [3, 4, 5] },
-      { colIdCategory: 4, ids: [1, 2] },
-      { colIdCategory: 1, ids: [3, 2] },
+      {colIdCategory: 1, ids: [1, 2]},
+      {colIdCategory: 3, ids: [3, 4, 5]},
+      {colIdCategory: 4, ids: [1, 2]},
+      {colIdCategory: 1, ids: [3, 2]},
     ];
 
     await this.exampleCategoryService.getCombobox({page: 1, size: 100, valueSearch: [1, 3, 4]});
@@ -118,21 +119,21 @@ export class CrudComponent implements OnInit {
   }
 
   async delete(ids: any[]): Promise<void> {
-    const confirm = await this.dialogService.confirm('Bạn có muốn xóa dữ liệu này');
-    if (!confirm) {
-      return;
-    }
-    const paramsDelete = {
-      id: ids
-    };
-
-    const rsDelete = await this.exampleCrudService.post(paramsDelete, 'Delete');
-    if (rsDelete.ok) {
-      this.messageService.showMessageSuccess('Xóa thành công');
-      this.getData();
-    } else {
-      this.messageService.notiMessageError(rsDelete.error);
-    }
+    this.dialogService.confirmWithCallBack(options => {
+      options.content = 'Xóa dữ liệu';
+      options.type = 'danger';
+    }, async () => {
+      const paramsDelete = {
+        id: ids
+      };
+      const rsDelete = await this.exampleCrudService.post(paramsDelete, 'Delete');
+      if (rsDelete.ok) {
+        this.messageService.showMessageSuccess('Xóa thành công');
+        this.getData();
+      } else {
+        this.messageService.notiMessageError(rsDelete.error);
+      }
+    });
   }
 
   async addDataDialog(): Promise<void> {
@@ -140,9 +141,7 @@ export class CrudComponent implements OnInit {
       options.title = 'Example add';
       options.size = DialogSize.full;
       options.component = CrudDialogComponent;
-      options.inputs = {
-
-      };
+      options.inputs = {};
     }, (eventName, eventValue) => {
       if (eventName === 'onClose') {
         this.dialogService.closeDialogById(dialog.id);

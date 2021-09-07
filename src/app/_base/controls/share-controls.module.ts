@@ -19,6 +19,7 @@ import { InputSelectApiModule } from './input-select-api/input-select-api.module
 import { InputSelectMultipleApiModule } from './input-select-multiple-api/input-select-multiple-api.module';
 import { InputRadioModule } from './input-radio/input-radio.module';
 import { InputFileModule } from './input-file/input-file.module';
+import { InputAutocomplateApiModule } from './input-autocomplate-api/input-autocomplate-api.module';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { InputFileModule } from './input-file/input-file.module';
     InputSelectMultipleApiModule,
     InputRadioModule,
     InputFileModule,
+    InputAutocomplateApiModule,
     PipeModule,
     PagingModule,
     NzUploadModule
@@ -62,10 +64,11 @@ import { InputFileModule } from './input-file/input-file.module';
     InputSelectMultipleApiModule,
     InputRadioModule,
     InputFileModule,
+    InputAutocomplateApiModule,
     RenderErrorsModule,
     PipeModule,
     PagingModule,
-    NzUploadModule
+    NzUploadModule,
   ]
 })
 export class ShareControlsModule {}

@@ -19,8 +19,37 @@ export class DialogService {
         nzTitle: title,
         nzContent: content,
         nzOnOk: () => resolve(true),
-        nzOnCancel: () => resolve(false)
+        nzOnCancel: () => resolve(false),
+        nzOkText: 'Đồng ý',
+        nzCancelText: 'Hủy'
       });
+    });
+  }
+
+  public confirmWithCallBack(options: (options: IConfirmOption) => void, callBack: () => void): void {
+    const confirmOption: IConfirmOption = {
+      title: 'Thông báo',
+      content: '',
+      type: 'primary'
+    };
+
+    if (options) {
+      options(confirmOption);
+    }
+
+    this.modalService.confirm({
+      nzTitle: confirmOption.title,
+      nzContent: confirmOption.content,
+      nzOkType: confirmOption.type === 'primary' ? 'primary' : 'danger',
+      nzOkText: 'Đồng ý',
+      nzCancelText: 'Hủy',
+      nzOnOk: () =>
+        new Promise(async (resolve, reject) => {
+          if (callBack) {
+            await callBack();
+            resolve();
+          }
+        }).catch(() => console.log('Oops errors!'))
     });
   }
 
@@ -106,6 +135,12 @@ export interface DialogConfigModal {
   size: string;
   component: any;
   inputs: any;
+}
+
+export interface IConfirmOption {
+  title: string;
+  content: string;
+  type: string;
 }
 
 export enum DialogSize {

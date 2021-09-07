@@ -1,0 +1,29 @@
+
+<nz-table #basicTable [nzData]="listOfData" [nzLoading]="isLoading" [nzBordered]="true" [nzFrontPagination]="false"
+          nzSize="small" [nzScroll]="{ x: '1100px' }">
+  <thead>
+  <tr>
+    <th nzLeft nzWidth="40px" [nzChecked]="tableConfig.isAllChecked" [nzIndeterminate]="tableConfig.indeterminate"
+        (nzCheckedChange)="tableConfig.onAllChecked($event,listOfData)"></th>
+    <th nzWidth="300px" nzLeft>Tên</th>
+    <ng-container *ngFor="let task of listTask">
+      <th class="text-center" nzWidth="100px">{{task.name}}</th>
+    </ng-container>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of listOfData;let i = index">
+    <td nzLeft [nzChecked]="tableConfig.itemSelected.has(item[tableConfig.keyId])"
+        (nzCheckedChange)="tableConfig.onItemChecked(item[tableConfig.keyId], $event, listOfData)">
+    </td>
+    <td nzLeft>
+      {{item.name}}
+    </td>
+    <ng-container *ngFor="let task of listTask">
+      <td class="text-center" [nzChecked]="true"></td>
+    </ng-container>
+  </tr>
+  </tbody>
+</nz-table>
+
+<button nz-button class="mr-2" nzType="primary" type="button" (click)="save()">Lưu</button>
